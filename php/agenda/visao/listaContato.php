@@ -23,7 +23,7 @@
             <th>Telefone</th>
             <th><img src="visao/img/update.png" width="30px" /></th>
             <th><img src="visao/img/delete.png" width="30px" /></th>
-        </tr>
+        </tr>a
 
         <?php
             foreach ($lista as $c) {
