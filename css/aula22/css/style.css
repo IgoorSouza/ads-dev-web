@@ -1,0 +1,9 @@
+body {
+  background-image: linear-gradient(rgb(141, 141, 141), rgb(221, 221, 221));
+}
+
+#gradiente {
+  width: 100%;
+  height: 300px;
+  background-image: linear-gradient(45deg, blue, #0287f3);
+}
