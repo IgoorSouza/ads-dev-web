@@ -1,42 +1,78 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listagem de Contatos</title>
-</head>
-<body>
-    <?php 
-        if (isset($status)) {
-            echo "<h2>" . $status .  "</h2>"; 
-        }
-    ?>
+<HTML>
+	<HEAD>
+		<TITLE> Listagem de Contatos </TITLE>
+		<META charset="UTF-8" />
+		<style>
+			#cadastrarLink {
+				background: white;
+				color: black;
+				padding: 10px;
+				font-size: 20px;
+				border-radius: 10px;
+				text-decoration: none;
+				transition: all;
+				transition-duration: 300ms;
+			}
 
-    <a href="contato.php?fun=cadastrar">Cadastrar</a>
-    <br /> <br />
+			#cadastrarLink:hover {
+				opacity: 0.8;
+			}
+			
+			table {
+				border-collapse: collapse;
+				margin-top: 10px;
+			}
 
-    <table border="1px">
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Telefone</th>
-            <th><img src="visao/img/update.png" width="30px" /></th>
-            <th><img src="visao/img/delete.png" width="30px" /></th>
-        </tr>a
+			th, td {
+				font-size: 18px;
+				text-align: center;
+				padding: 10px;
+				border: 1px solid white;
+			}
+		</style>
+	</HEAD>
+	<BODY>
+		<?php
+			if(isset($status)){ echo "<H2 style='line-height: 1.1'>".$status."</H2>";}
+		?>
+		<A href="contato.php?fun=cadastrar" id="cadastrarLink" > Cadastrar </A>
+		<br /><br />
+			
+		<TABLE>
+			<TR> 
+				<TH> ID </TH>
+				<TH> Nome </TH>
+				<TH> Email </TH>
+				<TH> Telefone </TH>	
+				<TH> <img src="visao/img/update.png" width='30px' /> </TH>
+				<TH> <img src="visao/img/delete.png" width='30px' /> </TH>
+			</TR>
+			<!-- Primeira linha da tabela com o cabeçalho -->
+			
+			    <?php
+				foreach($lista as $c){	
+					echo "<TR>"; 	
 
-        <?php
-            foreach ($lista as $c) {
-                echo "<tr>";
-                echo "<td>" . $c->getId() . "</td>";
-                echo "<td><a href='contato.php?fun=exibir&id=" . $c->getId() . "'>" . $c->getNome() . "</a></td>";
-                echo "<td>" . $c->getEmail() . "</td>";
-                echo "<td>" . $c->getTelefone() . "<td>";
-                echo "<td><a href='contato.php?fun=alterar&id=" . $c->getId() . "'> <img src='visao/img/update.png' width='30' /> </a></td>";
-                echo "<td><a href='contato.php?fun=excluir&id=" . $c->getId() . "'> <img src='visao/img/delete.png' width='30' /> </a></td>";
-                echo "</tr>";
-            }
-        ?>
-    </table>
-</body>
-</html>
+					echo "<TD>" . $c->getId() . "</TD>";
+					
+					echo "<TD><A href='contato.php?fun=exibir&id=". $c->getId() . 
+					      "'>" . $c->getNome() . "</A></TD>";
+					
+					echo "<TD>" . $c->getEmail() . "</TD>";
+					
+					echo "<TD style='text-wrap: nowrap;'>" . $c->getTelefone() . "</TD>";		
+					
+					echo "<TD><A href=contato.php?fun=alterar&id=" . 
+					      $c->getId() . "><img src='visao/img/update.png' width='30px'/> 
+						  </A></TD>"; 
+
+					echo "<TD><A href=contato.php?fun=excluir&id=" . 
+					      $c->getId() . "><img src='visao/img/delete.png' width='30px' /> 
+						  </A></TD>";	
+					
+					echo "</TR>";	
+				}	
+			?>	
+		</TABLE>
+	</BODY>
+</HTML>
